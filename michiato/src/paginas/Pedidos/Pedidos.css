@@ -1,0 +1,432 @@
+/* ═══════════════════════════════════════════════════
+   PANEL DE CONTROL — CAFETERÍA MICHIATO
+   Estilo: Warm brand palette, professional & elegant
+═══════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;600;700&display=swap');
+
+:root {
+  --beige:       #F2EFDD;
+  --beige-mid:   #e8e2d0;
+  --beige-dark:  #d9d1bc;
+  --wine:        #8b2454;
+  --wine-dark:   #4a1c1c;
+  --wine-light:  #b5547a;
+  --rose:        #c89da8;
+  --rose-light:  #f5e8ec;
+  --ink:         #2e1f1a;
+  --ink-soft:    #5a3e38;
+  --muted:       #9e8e85;
+
+  /* Estados semáforo — tonos cálidos de marca */
+  --pendiente:   #d4890a;   /* ámbar cálido  */
+  --preparando:  #2e7da6;   /* azul pizarra  */
+  --listo:       #3a8a5c;   /* verde salvia  */
+  --alerta:      #b83232;   /* rojo alarma   */
+}
+
+/* ═══════════════════
+   BASE
+═══════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+
+.cocina-container {
+  background-color: var(--beige);
+  min-height: 100vh;
+  padding: 36px 24px 60px;
+  font-family: 'Lato', sans-serif;
+  color: var(--ink);
+}
+
+/* ═══════════════════
+   ENCABEZADO
+═══════════════════ */
+.cocina-titulo {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--wine-dark);
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 4px;
+  letter-spacing: 0.01em;
+}
+
+.cocina-subtitulo {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 400;
+  margin-bottom: 36px;
+  letter-spacing: 0.04em;
+}
+
+/* Línea decorativa bajo el header */
+.cocina-titulo + .cocina-subtitulo::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: var(--rose);
+  margin: 10px auto 8px;
+  border-radius: 2px;
+}
+
+/* ═══════════════════
+   LAYOUT DOS COLUMNAS
+═══════════════════ */
+.bloques-separados-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.columna-monitor {
+  flex: 1;
+  min-width: 300px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(74, 28, 28, 0.07);
+  border: 1px solid var(--beige-dark);
+}
+
+/* ═══════════════════
+   HEADERS DE SECCIÓN
+═══════════════════ */
+.titulo-seccion-panel {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 12px 18px;
+  border-radius: 10px;
+  margin: 0 0 20px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cocina-color-header {
+  background-color: var(--wine-dark);
+  color: var(--beige);
+  border-left: 4px solid var(--rose);
+}
+
+.mesero-color-header {
+  background-color: var(--wine);
+  color: var(--beige);
+  border-left: 4px solid #f0b8d0;
+}
+
+/* ═══════════════════
+   ESTADO VACÍO
+═══════════════════ */
+.panel-vacio-texto {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 40px;
+  font-style: italic;
+  font-size: 0.9rem;
+  padding: 30px 20px;
+  background: var(--beige);
+  border-radius: 10px;
+  border: 1.5px dashed var(--beige-dark);
+}
+
+.cocina-vacia {
+  text-align: center;
+  margin-top: 80px;
+  color: var(--muted);
+}
+
+/* ═══════════════════
+   STACK DE TARJETAS
+═══════════════════ */
+.stack-tarjetas,
+.grid-pedidos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* GRID MODE (usado en algunas vistas) */
+.grid-pedidos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════
+   TARJETA BASE
+═══════════════════ */
+.tarjeta-pedido,
+.tarjeta-panel {
+  background: var(--beige);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid var(--beige-dark);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-pedido:hover,
+.tarjeta-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(74, 28, 28, 0.1);
+}
+
+/* ── Bordes de estado ── */
+.borde-pendiente  { border-left: 5px solid var(--pendiente); }
+.borde-preparando { border-left: 5px solid var(--preparando); }
+.borde-cobro-alerta {
+  border: 1.5px solid var(--alerta);
+  border-left: 5px solid var(--alerta);
+  background: #fdf5f5;
+}
+
+/* ═══════════════════
+   HEADER DE TARJETA
+═══════════════════ */
+.tarjeta-header {
+  background: var(--beige-mid);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--beige-dark);
+}
+
+.mesa-badge {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--wine-dark);
+  background: var(--rose-light);
+  padding: 3px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--rose);
+}
+
+.badge-alerta-color {
+  color: var(--alerta) !important;
+  font-weight: 700;
+}
+
+.hora-badge {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ═══════════════════
+   CUERPO DE TARJETA
+═══════════════════ */
+.tarjeta-cuerpo {
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.orden-id {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Lista de platillos */
+.lista-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.item-producto {
+  font-size: 1rem;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--beige-dark);
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  color: var(--ink);
+}
+
+.item-producto:last-child { border-bottom: none; }
+
+.item-cantidad,
+.item-amount {
+  font-weight: 700;
+  color: var(--wine);
+  font-size: 1rem;
+  min-width: 24px;
+}
+
+.item-nombre { color: var(--ink); flex: 1; }
+
+/* Total */
+.total-pedido {
+  text-align: right;
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.total-pedido-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--beige-mid);
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-top: 12px;
+  border: 1px solid var(--beige-dark);
+}
+
+.total-label {
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.total-monto {
+  font-weight: 700;
+  color: var(--wine-dark);
+  font-size: 1.15rem;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Estatus actual */
+.estatus-texto-actual {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.estatus-texto-actual span {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ═══════════════════
+   BANNER MESERO
+═══════════════════ */
+.banner-atencion-mesero {
+  background: #fdf0e8;
+  border: 1px solid #e8a87c;
+  border-left: 4px solid var(--alerta);
+  color: #8b3a00;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-bottom: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+/* ═══════════════════
+   BOTONES DE ACCIÓN
+═══════════════════ */
+.tarjeta-acciones {
+  padding: 12px 16px;
+  background: var(--beige-mid);
+  display: flex;
+  gap: 8px;
+  border-top: 1px solid var(--beige-dark);
+  flex-wrap: wrap;
+}
+
+.btn-cocina,
+.btn-panel {
+  flex: 1;
+  border: none;
+  padding: 10px 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.03em;
+  min-width: 80px;
+}
+
+.btn-cocina:active,
+.btn-panel:active { transform: scale(0.97); }
+
+/* Preparar — azul pizarra */
+.btn-preparar {
+  background: #e8f4fb;
+  color: var(--preparando);
+  border: 1.5px solid var(--preparando);
+}
+.btn-preparar:hover { filter: brightness(0.92); }
+
+/* Completar — verde salvia */
+.btn-completar {
+  background: #eaf5ef;
+  color: var(--listo);
+  border: 1.5px solid var(--listo);
+}
+.btn-completar:hover { filter: brightness(0.92); }
+
+/* Cancelar — rojo suave */
+.btn-cancelar {
+  background: #fdf0f0;
+  color: var(--alerta);
+  border: 1.5px solid var(--alerta);
+}
+.btn-cancelar:hover { filter: brightness(0.92); }
+
+/* Finalizar pago — wine sólido */
+.btn-finalizar-pago {
+  background: var(--wine) !important;
+  color: white !important;
+  border: none !important;
+  width: 100%;
+  font-size: 0.95rem;
+  padding: 12px !important;
+}
+.btn-finalizar-pago:hover { filter: brightness(0.9); }
+
+/* ═══════════════════
+   ALERTAS Y ERRORES
+═══════════════════ */
+.cocina-error {
+  background: #fdf0f0;
+  color: var(--alerta);
+  border: 1px solid #f5c6c6;
+  border-left: 4px solid var(--alerta);
+  padding: 12px 16px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto 24px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ═══════════════════
+   ANIMACIÓN FLASH
+═══════════════════ */
+@keyframes flashAlerta {
+  0%   { box-shadow: 0 0 0   rgba(184, 50, 50, 0); }
+  50%  { box-shadow: 0 0 18px rgba(184, 50, 50, 0.35); }
+  100% { box-shadow: 0 0 0   rgba(184, 50, 50, 0); }
+}
+
+.animacion-flash { animation: flashAlerta 2s ease-in-out infinite; }
+
+/* ═══════════════════
+   RESPONSIVE
+═══════════════════ */
+@media (max-width: 768px) {
+  .cocina-container { padding: 24px 14px 48px; }
+  .cocina-titulo    { font-size: 1.6rem; }
+  .bloques-separados-layout { flex-direction: column; }
+  .tarjeta-acciones { flex-wrap: wrap; }
+  .btn-cocina, .btn-panel { font-size: 0.8rem; padding: 9px 6px; }
+}

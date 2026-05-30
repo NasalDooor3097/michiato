@@ -1,0 +1,278 @@
+.hostes-container {
+    background-color: #F2EFDD;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 60px 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.hostes-titulo {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #4a1c1c;
+    font-size: 2.6rem;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.hostes-descripcion {
+    color: #5c4d44;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 600px;
+}
+
+/* El contenedor del mapa de las 5 mesas */
+.mapa-mesas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 1100px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* El botón/tarjeta base de cada mesa */
+.tarjeta-mesa-interactiva {
+    background-color: #e6dfd3;
+    border-radius: 14px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+.tarjeta-mesa-interactiva:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(74, 28, 28, 0.15);
+}
+
+/* Cabecera de la tarjeta */
+.header-mesa {
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.cuerpo-mesa {
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.tag-estado {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* Modificadores de estilo según el estado */
+.estado-libre {
+    border: 2.5px solid #2e7d32; /* Borde Verde */
+}
+.estado-libre .header-mesa {
+    background-color: #2e7d32;
+}
+.estado-libre .tag-estado {
+    color: #2e7d32;
+}
+
+.estado-ocupada {
+    border: 2.5px solid #c62828; /* Borde Rojo Vino */
+}
+.estado-ocupada .header-mesa {
+    background-color: #c62828;
+}
+.estado-ocupada .tag-estado {
+    color: #c62828;
+}
+
+/* El diseño del código */
+.codigo-display {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #4a1c1c;
+    letter-spacing: 2px;
+    font-family: monospace;
+    margin: 5px 0 15px 0;
+}
+
+.codigo-display-vacio {
+    font-size: 1.8rem;
+    color: #b0a496;
+    margin: 5px 0 15px 0;
+}
+
+/* Indicador de acción inferior chiquito */
+.indicador-accion {
+    font-size: 0.75rem;
+    color: #7a6e5d;
+    font-style: italic;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Errores */
+.tarjeta-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+.animacion-entrada {
+    animation: fadeInUp 0.3s ease-out backwards;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ESTILOS NUEVA SECCIÓN DE ADEUDOS
+   ══════════════════════════════════════════════════════════ */
+.divisor-seccion {
+    border: none;
+    border-top: 2px dashed #ccc;
+    margin: 40px 0 30px 0;
+}
+
+.verificador-adeudos-container {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.titulo-adeudos {
+    color: #4a1c1c;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.descripcion-adeudos {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.formulario-adeudo {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.input-mesa-adeudo {
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    width: 60%;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.input-mesa-adeudo:focus {
+    border-color: #8b2454;
+}
+
+.btn-revisar-adeudo {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #8b2454;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-revisar-adeudo:hover {
+    background-color: #6b1b40;
+}
+
+.btn-revisar-adeudo:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Cajas de Resultado */
+.resultado-caja {
+    padding: 20px;
+    border-radius: 8px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.adeudo-pendiente {
+    background-color: #ffeaea;
+    border: 2px solid #ff5252;
+    color: #c62828;
+}
+
+.adeudo-limpio {
+    background-color: #e8f5e9;
+    border: 2px solid #4caf50;
+    color: #2e7d32;
+}
+
+.adeudo-error {
+    background-color: #fff3e0;
+    border: 2px solid #ffb74d;
+    color: #e65100;
+}
+
+.alerta-titulo { color: #d32f2f; margin-top: 0; }
+.limpio-titulo { color: #2e7d32; margin-top: 0; }
+
+.monto-deuda { font-size: 1.2rem; margin: 10px 0; }
+.estado-deuda { font-size: 0.9rem; font-weight: bold; }
+
+.alerta-bloqueo {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #d32f2f;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+.alerta-pase {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #2e7d32;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

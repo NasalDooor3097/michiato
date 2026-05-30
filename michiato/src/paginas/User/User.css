@@ -1,0 +1,258 @@
+/* src/componentes/User/User.css */
+.user-page-container {
+    background-color: #f2efdd;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.user-card-organica {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 550px;
+    border-radius: 40px 10px 40px 10px; /* Forma orgánica tipo hoja */
+    box-shadow: 0 15px 35px rgba(74, 28, 28, 0.08);
+    overflow: hidden;
+}
+
+.user-header-blob {
+    background-color: #e6dfd3;
+    padding: 40px 20px 20px 20px;
+    text-align: center;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.avatar-wrapper {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 15px auto;
+    background-color: #8b2454;
+    border-radius: 50%;
+    padding: 4px;
+    box-shadow: 0 8px 20px rgba(139, 36, 84, 0.3);
+}
+
+.avatar-img-grande {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #fff;
+}
+
+.user-nombre-titulo {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #4a1c1c;
+    font-size: 2.2rem;
+    margin: 0 0 5px 0;
+}
+
+.user-rol-sub {
+    color: #8b2454;
+    font-style: italic;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Tabs */
+.user-tabs {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 30px 0 30px;
+    border-bottom: 2px solid #f2efdd;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #b0a496;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    color: #4a1c1c;
+    border-bottom: 3px solid #8b2454;
+}
+
+/* Contenido Formulario */
+.tab-content { padding: 30px; }
+
+.form-group-organico { margin-bottom: 20px; }
+
+.form-group-organico label {
+    display: block;
+    color: #4a1c1c;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.label-opcional { color: #b0a496; font-weight: normal; font-size: 0.8rem; }
+
+.form-group-organico input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e6dfd3;
+    border-radius: 12px;
+    background-color: #faf9f6;
+    font-size: 1rem;
+    color: #5c4d44;
+    outline: none;
+    transition: border 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group-organico input:focus { border-color: #8b2454; }
+
+/* Selector de Avatar */
+.selector-avatar-box {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.selector-avatar-box label {
+    color: #4a1c1c;
+    font-weight: bold;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.avatar-opciones {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.avatar-opcion {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s;
+}
+
+.avatar-opcion:hover { transform: scale(1.1); }
+.avatar-opcion.seleccionado { border: 3px solid #8b2454; transform: scale(1.15); box-shadow: 0 4px 10px rgba(139,36,84,0.3); }
+
+/* Botones y Mensajes */
+.btn-guardar-perfil {
+    width: 100%;
+    background-color: #8b2454;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.btn-guardar-perfil:hover { background-color: #4a1c1c; }
+
+.msg-alerta { padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 15px; font-weight: bold; }
+.msg-alerta.exito { background-color: #e8f5e9; color: #2e7d32; }
+.msg-alerta.error { background-color: #ffeaea; color: #c62828; }
+
+/* Sección Cupones */
+.titulo-cupones { text-align: center; color: #4a1c1c; margin-top: 0; font-family: 'Playfair Display', serif; }
+
+.cupon-tarjeta {
+    display: flex;
+    background-color: #fff9f9;
+    border: 2px dashed #8b2454;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.cupon-izq {
+    background-color: #8b2454;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-width: 80px;
+}
+
+.cupon-porcentaje { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+.cupon-off { font-size: 1rem; font-weight: bold; letter-spacing: 2px; }
+
+.cupon-der { padding: 15px; display: flex; flex-direction: column; justify-content: center; }
+.cupon-der h4 { margin: 0 0 5px 0; color: #4a1c1c; font-size: 1.1rem; }
+.cupon-der p { margin: 0 0 10px 0; color: #6b5b52; font-size: 0.85rem; line-height: 1.4; }
+
+.cupon-codigo-badge {
+    align-self: flex-start;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.cupon-vacio { text-align: center; color: #7f8c8d; font-style: italic; padding: 30px; }
+
+.fade-in { animation: fadeInTab 0.4s ease-in-out; }
+@keyframes fadeInTab { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Botón de Cerrar Sesión */
+.btn-cerrar-sesion {
+    width: 100%;
+    background-color: transparent;
+    color: #c62828;
+    border: 2px solid #ffcdd2;
+    padding: 12px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.btn-cerrar-sesion:hover {
+    background-color: #ffeaea;
+    border-color: #c62828;
+}
+
+.pedido-card {
+    background: #fff;
+    border: 1px solid #e6dfd3;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+.pedido-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #8b2454;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.pedido-items p {
+    margin: 2px 0;
+    font-size: 0.9rem;
+    color: #5c4d44;
+}

@@ -1,0 +1,403 @@
+/* src/paginas/AboutUs/AboutUs.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;500&display=swap');
+
+:root {
+  --beige:      #f2efdd;
+  --beige-dark: #e8e2d0;
+  --wine:       #8b2454;
+  --wine-dark:  #4a1c1c;
+  --rose:       #c89da8;
+  --ink:        #2e1f1a;
+  --ink-soft:   #5a3e38;
+}
+
+/* ═══════════════════════════════════════
+   SAKURA RAIN 🌸
+═══════════════════════════════════════ */
+.sakura-rain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sakura-petal {
+  position: absolute;
+  top: -60px;
+  animation: sakura-fall linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes sakura-fall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(var(--rot, 0deg)) scale(1);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) translateX(var(--swing, 30px)) rotate(calc(var(--rot, 0deg) + 180deg)) scale(0.95);
+    opacity: 0.9;
+  }
+  92% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(105vh) translateX(calc(var(--swing, 30px) * -0.5)) rotate(calc(var(--rot, 0deg) + 360deg)) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* ═══════════════════════════════════════
+   BASE
+═══════════════════════════════════════ */
+.about-page {
+  background: var(--beige);
+  font-family: 'Lato', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Animación de revelado */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.about-hero {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--beige);
+  overflow: hidden;
+  padding: 80px 24px 60px;
+}
+
+/* Hojas decorativas */
+.deco-leaf { position: absolute; color: var(--wine); }
+.deco-leaf--tl { width: 120px; top: -20px; left: -20px; transform: rotate(-30deg); }
+.deco-leaf--tr { width: 100px; top: -10px; right: -15px; transform: rotate(40deg) scaleX(-1); }
+.deco-leaf--bl { width: 90px;  bottom: 20px; left: 10px; transform: rotate(20deg); }
+.deco-leaf--br { width: 110px; bottom: -10px; right: 0; transform: rotate(-15deg) scaleX(-1); }
+
+.deco-paw { position: absolute; color: var(--rose); }
+.deco-paw--1 { width: 50px; top: 18%; right: 12%; opacity: 0.35; transform: rotate(15deg); }
+.deco-paw--2 { width: 35px; bottom: 22%; left: 10%; opacity: 0.25; transform: rotate(-10deg); }
+
+.hero-inner {
+  text-align: center;
+  max-width: 640px;
+  position: relative;
+  z-index: 3;
+  animation: fadeUp 0.9s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--wine);
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--rose);
+  padding-bottom: 6px;
+}
+
+.hero-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.05;
+  margin: 0 0 28px;
+  letter-spacing: -0.01em;
+}
+
+.hero-titulo em {
+  font-style: italic;
+  color: var(--wine);
+}
+
+.hero-descripcion {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  font-weight: 300;
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.hero-divider span {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--rose);
+}
+.divider-paw {
+  width: 22px;
+  color: var(--wine);
+}
+
+/* ═══════════════════════════════════════
+   HISTORIA
+═══════════════════════════════════════ */
+.about-historia {
+  background: var(--beige-dark);
+  padding: 80px 24px;
+}
+
+.historia-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+.historia-texto {
+  flex: 1;
+}
+
+.section-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--wine-dark);
+  margin: 0 0 22px;
+}
+.section-titulo--center { text-align: center; }
+
+.historia-texto p {
+  font-size: 0.97rem;
+  line-height: 1.9;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+/* Badge circular */
+.historia-badge {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.badge-ring {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 2.5px solid var(--wine);
+  background: var(--beige);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 28px rgba(139, 36, 84, 0.12);
+  position: relative;
+  z-index: 2;
+}
+
+.badge-emoji { font-size: 2.5rem; line-height: 1; }
+.badge-texto {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--wine);
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.badge-leaf { position: absolute; color: var(--wine); }
+.badge-leaf--l { width: 55px; bottom: -10px; left: -20px; transform: rotate(25deg); }
+.badge-leaf--r { width: 55px; bottom: -10px; right: -20px; transform: rotate(-25deg) scaleX(-1); }
+
+/* ═══════════════════════════════════════
+   MISIÓN VISIÓN VALORES
+═══════════════════════════════════════ */
+.about-mvv {
+  padding: 80px 24px 60px;
+  background: var(--beige);
+}
+
+.mvv-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.mvv-paw {
+  width: 38px;
+  color: var(--rose);
+}
+
+.mvv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Tarjeta */
+.mvv-card {
+  position: relative;
+  background: var(--card-bg, #fff);
+  border: 2.5px solid var(--card-color, #888);
+  border-radius: 20px;
+  padding: 32px 28px 42px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mvv-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.09);
+}
+
+/* Hojas en esquinas inferiores */
+.card-leaf {
+  position: absolute;
+  color: var(--card-color, #888);
+}
+.card-leaf--bl { width: 55px; bottom: -12px; left: -10px; transform: rotate(15deg); }
+.card-leaf--br { width: 55px; bottom: -12px; right: -10px; transform: rotate(-15deg) scaleX(-1); }
+
+/* Header con ícono + label */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.card-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--card-color, #888);
+  color: var(--card-color, #888);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: white;
+}
+
+.card-icon-svg {
+  width: 26px;
+  height: 26px;
+}
+
+.card-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--card-color, #888);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0;
+  background: var(--card-color, #888);
+  color: white;
+  padding: 5px 16px;
+  border-radius: 50px;
+}
+
+.card-texto {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* ═══════════════════════════════════════
+   PILARES / VALORES PÍLDORAS
+═══════════════════════════════════════ */
+.about-pilares {
+  background: var(--wine);
+  padding: 70px 24px;
+}
+
+.pilares-inner .section-titulo { color: white; margin-bottom: 40px; }
+
+.pilares-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pilar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  border-radius: 50px;
+  padding: 12px 22px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  animation: fadeUp 0.6s ease both;
+}
+
+.pilar:hover {
+  background: rgba(255,255,255,0.22);
+  transform: translateY(-3px);
+}
+
+.pilar-emoji { font-size: 1.25rem; }
+
+.pilar-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: white;
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .mvv-grid { grid-template-columns: 1fr; max-width: 500px; }
+  .historia-inner { flex-direction: column; text-align: center; }
+  .badge-ring { width: 130px; height: 130px; }
+}
+
+@media (max-width: 600px) {
+  .about-hero { min-height: 60vh; padding: 60px 20px 48px; }
+  .hero-titulo { font-size: 3rem; }
+  .section-titulo { font-size: 1.6rem; }
+  .about-historia,
+  .about-mvv,
+  .about-pilares { padding: 56px 18px; }
+  .mvv-card { padding: 26px 20px 38px; }
+  .deco-leaf--tl,
+  .deco-leaf--tr { width: 70px; }
+}

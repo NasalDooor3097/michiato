@@ -1,0 +1,55 @@
+{
+  "breakfasts": [
+    { "id": "1", "nombre": "Chilaquiles con Arrachera", "descripcion": "Totopos crujientes con arrachera asada, crema, queso y cebolla.", "precio": 220, "disponible": true, "imagen": "/productos/Breakfasts/arrachera.png" },
+    { "id": "2", "nombre": "Huevos al Gusto", "descripcion": "Preparados a tu elección (estrellados, revueltos) acompañados de frijoles.", "precio": 85, "disponible": true, "imagen": "/productos/Breakfasts/huevosAlGusto.png" },
+    { "id": "3", "nombre": "Huevos Rancheros", "descripcion": "Huevos estrellados sobre tortilla frita, bañados en salsa ranchera.", "precio": 95, "disponible": true, "imagen": "/productos/Breakfasts/huevosRancheros.png" },
+    { "id": "4", "nombre": "Machaca con Huevo", "descripcion": "Tradicional carne seca deshebrada revuelta con huevo y verdura.", "precio": 115, "disponible": true, "imagen": "/productos/Breakfasts/machacaConHuevo.png" },
+    { "id": "5", "nombre": "Omelette de Queso", "descripcion": "Esponjoso omelette relleno de una mezcla de quesos fundidos.", "precio": 98, "disponible": true, "imagen": "/productos/Breakfasts/omeletteDeQueso.png" }
+  ],
+  "coffees": [
+    { "id": "1", "nombre": "Café Americano", "descripcion": "Extracción de espresso caliente con agua, grano seleccionado.", "precio": 40, "disponible": true, "imagen": "/productos/Coffees/cafeAmericano.png" },
+    { "id": "2", "nombre": "Capuccino", "descripcion": "Espresso con leche evaporada y una capa densa de espuma.", "precio": 55, "disponible": true, "imagen": "/productos/Coffees/capuccino.png" },
+    { "id": "3", "nombre": "Cold Brew Latte", "descripcion": "Café extraído en frío durante 24 horas, mezclado con leche fría.", "precio": 65, "disponible": true, "imagen": "/productos/Coffees/coldBrewLatte.png" },
+    { "id": "4", "nombre": "Frappé", "descripcion": "Café licuado con hielo, leche y un toque dulce, ideal para el calor.", "precio": 60, "disponible": true, "imagen": "/productos/Coffees/frape.png" }
+  ],
+  "mocktails": [
+    { "id": "1", "nombre": "Jugo de Naranja", "descripcion": "Jugo 100% natural y exprimido al momento.", "precio": 45, "disponible": true, "imagen": "/productos/Mocktails/jugonaranja.png" },
+    { "id": "2", "nombre": "Smoothie Frutal", "descripcion": "Bebida cremosa granizada a base de una selección de frutas de temporada.", "precio": 65, "disponible": true, "imagen": "/productos/Mocktails/smoothieFrutal.png" },
+    { "id": "3", "nombre": "Té Helado de Durazno", "descripcion": "Refrescante té negro infusionado con un toque dulce de durazno.", "precio": 40, "disponible": true, "imagen": "/productos/Mocktails/teHeladoDurazno.png" }
+  ],
+  "salads": [
+    { "id": "1", "nombre": "Ensalada Caprese", "descripcion": "Rodajas de tomate fresco, queso mozzarella, albahaca y un toque de pesto.", "precio": 115, "disponible": true, "imagen": "/productos/Salads/ensaladaCaprese.png" },
+    { "id": "2", "nombre": "Ensalada César", "descripcion": "Lechuga orejona, crotones, queso parmesano y aderezo César casero.", "precio": 120, "disponible": true, "imagen": "/productos/Salads/ensaladaCesar.png" },
+    { "id": "3", "nombre": "Ensalada de Atún", "descripcion": "Mezcla de hojas verdes, atún en agua, verduras crujientes y aderezo ligero.", "precio": 110, "disponible": true, "imagen": "/productos/Salads/ensaladaDeAtun.png" },
+    { "id": "4", "nombre": "Ensalada Griega", "descripcion": "Pepino, tomate, cebolla morada, aceitunas negras y queso feta con aceite de oliva.", "precio": 125, "disponible": true, "imagen": "/productos/Salads/ensaladaGriega.png" }
+  ],
+  "waters": [
+    { "id": "1", "nombre": "Agua Alcalina", "descripcion": "Agua purificada con pH balanceado óptimo para la hidratación.", "precio": 30, "disponible": true, "imagen": "/productos/Watters/aguaAlcalina.png" },
+    { "id": "2", "nombre": "Agua Alcalina con Limón", "descripcion": "Agua de alto pH con un toque fresco de limón natural.", "precio": 35, "disponible": true, "imagen": "/productos/Watters/aguaAlcalinaLimon.png" },
+    { "id": "3", "nombre": "Agua Alcalina con Menta", "descripcion": "Perfecta combinación hidratante y sumamente refrescante.", "precio": 35, "disponible": true, "imagen": "/productos/Watters/aguaAlcalinaMenta.png" },
+    { "id": "4", "nombre": "Agua Alcalina con Pepino", "descripcion": "Ligera e ideal para acompañar tus alimentos.", "precio": 35, "disponible": true, "imagen": "/productos/Watters/aguaAlcalinaPepino.png" },
+    { "id": "5", "nombre": "Agua de Horchata", "descripcion": "Tradicional agua cremosa de arroz con un toque de canela.", "precio": 38, "disponible": true, "imagen": "/productos/Watters/aguaHorchata.png" },
+    { "id": "6", "nombre": "Agua de Jamaica", "descripcion": "Clásica infusión fría de flor de jamaica, 100% natural.", "precio": 38, "disponible": true, "imagen": "/productos/Watters/aguaJamaica.png" },
+    { "id": "7", "nombre": "Agua de Pepino con Limón", "descripcion": "La combinación más fresca y revitalizante para el día.", "precio": 38, "disponible": true, "imagen": "/productos/Watters/aguaPepinoLimon.png" },
+    { "id": "8", "nombre": "Agua de Tamarindo", "descripcion": "Preparada con pulpa de tamarindo natural, agridulce y deliciosa.", "precio": 38, "disponible": true, "imagen": "/productos/Watters/aguaTamarindo.png" }
+  ],
+  "catMenu": [
+    { "id": "1", "nombre": "Agua para Mascota", "descripcion": "Agua fresca ideal para tu gato.", "precio": 20, "disponible": true, "imagen": "/productos/CatMenu/AguaParaMascota.jpg" },
+    { "id": "2", "nombre": "Mousse de Calabaza", "descripcion": "Delicioso mousse suave y nutritivo.", "precio": 45, "disponible": true, "imagen": "/productos/CatMenu/MuseDeCalabaza.jpg" },
+    { "id": "3", "nombre": "Tarta de Salmón", "descripcion": "Tarta premium a base de salmón fresco.", "precio": 55, "disponible": true, "imagen": "/productos/CatMenu/TartaDeSalmon.jpg" },
+    { "id": "4", "nombre": "Té de Hierba de Gato", "descripcion": "Infusión relajante de hierba gatuna.", "precio": 30, "disponible": true, "imagen": "/productos/CatMenu/TeDeHiervaDeGato.jpg" }
+  ],
+  "dogMenu": [
+    { "id": "1", "nombre": "Agua para Mascota", "descripcion": "Hidratación pura para tu perro.", "precio": 20, "disponible": true, "imagen": "/productos/DogMenu/AguaParaMascota.jpg" },
+    { "id": "2", "nombre": "Caldo de Hueso", "descripcion": "Caldo nutritivo cocinado a fuego lento.", "precio": 40, "disponible": true, "imagen": "/productos/DogMenu/CaldoDeHueso..jpg" },
+    { "id": "3", "nombre": "Cerveza para Perros", "descripcion": "Bebida sin alcohol, hecha con extracto de carne.", "precio": 50, "disponible": true, "imagen": "/productos/DogMenu/CervezaParaPerros.jpg" },
+    { "id": "4", "nombre": "Dieta Barf", "descripcion": "Alimentación cruda equilibrada.", "precio": 80, "disponible": true, "imagen": "/productos/DogMenu/DietaBarf.jpg" },
+    { "id": "5", "nombre": "Pechuga al Vapor", "descripcion": "Pechuga de pollo cocida al vapor.", "precio": 65, "disponible": true, "imagen": "/productos/DogMenu/PechugaVapor.jpg" }
+  ],
+  "petsSnack": [
+    { "id": "1", "nombre": "Donas de Pollo y Camote", "descripcion": "Snack horneado nutritivo.", "precio": 35, "disponible": true, "imagen": "/productos/PetsSnack/DonasPolloCamote.jpg" },
+    { "id": "2", "nombre": "Muffin de Manzana", "descripcion": "Postre saludable para tu mascota.", "precio": 30, "disponible": true, "imagen": "/productos/PetsSnack/MuffynDeManzana.jpg" },
+    { "id": "3", "nombre": "Premios Artesanales", "descripcion": "Selección de premios horneados.", "precio": 40, "disponible": true, "imagen": "/productos/PetsSnack/PremiosArtesanales.jpg" },
+    { "id": "4", "nombre": "Puppuccino Clásico", "descripcion": "Crema batida especial para perros.", "precio": 25, "disponible": true, "imagen": "/productos/PetsSnack/PupppuccinoClasico.jpg" }
+  ]
+}
