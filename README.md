@@ -1,18 +1,18 @@
 # 🐾 Michiato
 
-Management system designed for a pet-friendly restaurant and coffee shop. It enables customers to browse the digital menu (including special options for pets) and manage orders, while providing dedicated administration modules for table host management and kitchen order fulfillment.
+Full-stack management system for a pet-friendly restaurant and coffee shop. It enables customers to browse the digital menu (including dedicated pet options) and place orders, while providing independent administrative modules for hosts (table management) and kitchen/staff (order tracking and fulfillment).
 
 ---
 
 ## 🚀 Key Features
 
-- **Digital Menu & Catalog:** Interactive view of general dishes and a specialized pet menu (`/menu-pets`).
-- **Cart & Order Flow:** Real-time shopping and table-based ordering workflow with client-side state persistence.
+- **Digital Menu & Catalog:** Interactive view for food and beverage items, featuring an exclusive pet menu (`/menu-pets`).
+- **Cart & Order Management:** Client-side order tracking and table-assigned cart persistence.
 - **Role-Based Access Control (RBAC):**
-  - **Customer (`cliente`):** Menu browsing, user profile access, and order placement.
-  - **Hostess (`host`):** Dedicated module for real-time table assignment and dining room status (`/hostes`).
-  - **Administrator (`admin`):** Monitoring, status updates, and dispatching of kitchen orders (`/pedidos`).
-- **Frontend Security:** Protected routes using higher-order components (`ProtectedRoute`) combined with active session and role verification.
+  - **Customer (`cliente`):** Menu browsing, user profile management, and order placement.
+  - **Hostess (`host`):** Dedicated module for real-time table allocation and floor management (`/hostes`).
+  - **Administrator (`admin`):** Order tracking, status updates, and kitchen dispatch control (`/pedidos`).
+- **Frontend Route Protection:** Route authorization using higher-order components (`ProtectedRoute`), validating user sessions and role permissions.
 
 ---
 
@@ -30,20 +30,20 @@ Management system designed for a pet-friendly restaurant and coffee shop. It ena
 ```plaintext
 michiato/
 ├── backend/
-│   ├── config/         # MySQL database connection setup
-│   ├── controllers/    # Route controllers (auth, orders, tables)
-│   ├── middlewares/    # JWT and RBAC verification logic
+│   ├── config/         # MySQL database connection & configuration
+│   ├── controllers/    # Controller logic (auth, orders, tables)
+│   ├── middlewares/    # JWT verification and role authorization
 │   ├── routes/         # API endpoints (/api/login, /api/pedidos, etc.)
-│   └── index.js        # Express server entry point
+│   └── index.js        # Express application entry point
 │
 └── frontend/
     ├── public/
     └── src/
-        ├── componentes/ # Reusable UI items (NavBar, Footer, ProtectedRoute, etc.)
-        ├── context/     # Global state providers (AuthContext, CartContext)
-        ├── paginas/     # Views (Home, Menu, Hostes, Pedidos, LogIn, SingIn, etc.)
-        ├── App.js       # App router and context providers configuration
-        └── index.js     # React root mount
+        ├── componentes/ # Reusable UI components (NavBar, Footer, ProtectedRoute, etc.)
+        ├── context/     # AuthContext, CartContext
+        ├── paginas/     # Page views (Home, Menu, Hostes, Pedidos, LogIn, SingIn, etc.)
+        ├── App.js       # Route declarations and context providers
+        └── index.js
 ```
 
 ---
@@ -51,25 +51,23 @@ michiato/
 ## ⚙️ Installation & Local Setup
 
 ### Prerequisites
-- Node.js (version 18+ recommended)
-- MySQL Database Engine (e.g., XAMPP, MySQL Workbench, or CLI)
+- Node.js (v18 or higher recommended)
+- MySQL Server (XAMPP, MySQL Workbench, or CLI)
 
-### 1. Clone the repository
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/tu-usuario/michiato.git
 cd michiato
 ```
 
-### 2. Configure the Database
-Import the included `.sql` database schema dump into your MySQL server (XAMPP recommended).
-
-The database dump includes two default accounts for testing administrative modules:
-- **Hostess access (`/hostes`):**  
-  - Email: `hostes@gmail.com`  
-  - Password: `Hostes.`
-- **Admin access (`/pedidos`):**  
-  - Email: `admin@gmail.com`  
-  - Password: `Admin98.`
+### 2. Database Setup
+1. Open your MySQL client (e.g., phpMyAdmin via XAMPP).
+2. Ensure the `restaurante` database exists:
+   ```sql
+   CREATE DATABASE IF NOT EXISTS `restaurante` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   USE `restaurante`;
+   ```
+3. Import the provided `.sql` schema file into the `restaurante` database.
 
 ---
 
@@ -80,7 +78,7 @@ cd mi-backend
 npm install
 ```
 
-Create a `.env` file in the backend root directory with the following variables:
+Create a `.env` file in the backend root directory:
 ```env
 PORT=5000
 DB_HOST=localhost
@@ -115,23 +113,34 @@ Start the React development server:
 npm start
 ```
 
-The application will run locally at `http://localhost:3000`.
+The client will run locally at `http://localhost:3000`.
 
 ---
 
-## 👥 Testing Accounts & Role Management
+## 👥 Creating Administrative Accounts (Roles Setup)
 
-To test role-based route guards and permissions:
-1. Register a standard user from `/signup` (assigned the `cliente` role by default).
-2. To test protected modules with a custom account, update the role directly in MySQL:
+To test the role-protected modules without hardcoded credentials, use the registration interface and assign permissions in MySQL:
+
+1. **Register User Accounts:**
+   - Go to `http://localhost:3000/signup`.
+   - Register the accounts you wish to use (e.g., one for hostess and one for orders/admin).
+   - By default, all registered users receive the `cliente` role, and their passwords will be securely hashed with `bcrypt`.
+
+2. **Grant Administrative Roles:**
+   - Open your MySQL console or phpMyAdmin and execute:
    ```sql
-   UPDATE usuarios SET rol = 'host' WHERE email = 'your_email@example.com';  -- Grants access to /hostes
-   UPDATE usuarios SET rol = 'admin' WHERE email = 'your_email@example.com'; -- Grants access to /pedidos
+   -- Assign the Hostess role (Grants access to /hostes)
+   UPDATE usuarios SET rol = 'host' WHERE email = 'your_host_email@example.com';
+
+   -- Assign the Administrator role (Grants access to /pedidos)
+   UPDATE usuarios SET rol = 'admin' WHERE email = 'your_admin_email@example.com';
    ```
-3. Log out and log back in to refresh the active session permissions.
+
+3. **Log In:**
+   - Log in with the updated accounts at `/login` to access `/hostes` or `/pedidos`.
 
 ---
 
 ## 📄 License
 
-This project was developed for educational and portfolio demonstration purposes.
+This project was developed for educational and software engineering portfolio purposes.
