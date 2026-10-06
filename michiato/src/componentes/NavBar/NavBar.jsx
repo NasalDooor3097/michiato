@@ -6,6 +6,8 @@ import { useCart } from '../../context/cartContext';
 import { useAuth } from '../../context/authContext';
 import axios from 'axios';
 import './NavBar.css';
+const API_URL = process.env.REACT_APP_API_URL;
+
 
 const NavBar = () => {
   const [menuAbierto, setMenuAbierto]     = useState(false);
@@ -21,7 +23,7 @@ const NavBar = () => {
 
   const { items, carritoAbierto, setCarritoAbierto, agregarAlCarrito, restarDelCarrito, vaciarCarrito, totalItems, totalPrecio } = useCart();
   
-  // 🔥 Nos traemos setUsuarioContext para actualizar el perfil en caliente
+  
   const { usuario, estaAutenticado, setUsuarioContext } = useAuth();
   const navigate = useNavigate();
 
@@ -43,7 +45,7 @@ const NavBar = () => {
     const id = idOverride || idMesaGuardada;
     if (!id) return;
     try {
-      const res = await axios.get(`http://localhost:5000/api/consultarCuenta/${id}`);
+      const res = await axios.get(`${API_URL}/api/consultarCuenta/${id}`);
       if (res.data.success) {
         setDatosCuenta(res.data);
         if (!res.data.ordenActiva) resetearEstadoLocal();
@@ -99,13 +101,13 @@ const NavBar = () => {
       codigoAFuego = codigoIngresado;
     }
     try {
-      // Mandamos la orden y avisamos si se consumió el descuento
-      const respuesta = await axios.post('http://localhost:5000/api/validarCodigoMesa', {
+      
+      const respuesta = await axios.post(`${API_URL}/api/validarCodigoMesa`, {
         codigoCliente: codigoAFuego,
         carritoItems: items,
         totalPrecio: totalConDescuento,
         idUsuario: usuario ? usuario.id_usuario : null,
-        descuentoAplicado: tieneDescuento // 👈 Le pasamos la bandera a MySQL
+        descuentoAplicado: tieneDescuento 
       });
       
       if (respuesta.data.success) {
@@ -115,7 +117,7 @@ const NavBar = () => {
         setCodigoMesaGuardado(codigoAFuego);
         alert(`¡Pedido confirmado para la Mesa #${respuesta.data.idMesa}! Total: $${totalConDescuento.toFixed(2)} MXN.`);
         
-        // 🔥 MAGIA: Si usó descuento, actualizamos el contexto para que desaparezca visualmente de toda la página
+        
         if (tieneDescuento && usuario) {
             setUsuarioContext({ ...usuario, tiene_descuento: 0 });
         }
@@ -126,10 +128,10 @@ const NavBar = () => {
       }
     } catch (error) {
       if (error.response?.data) {
-        alert(`❌ Error: ${error.response.data.mensaje}`);
+        alert(`Error: ${error.response.data.mensaje}`);
         resetearEstadoLocal();
       } else {
-        alert('❌ No se pudo conectar con el servidor.');
+        alert('No se pudo conectar con el servidor.');
       }
     }
   };
@@ -145,7 +147,7 @@ const NavBar = () => {
       : metodoSeleccionado;
 
     try {
-      await axios.post('http://localhost:5000/api/solicitarCobro', {
+      await axios.post(`${API_URL}/api/solicitarCobro`, {
         idMesa: idMesaGuardada,
         metodoPago: metodoFinal,
         total: datosCuenta.total,

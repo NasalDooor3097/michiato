@@ -16,10 +16,10 @@ const pool = mysql.createPool({
 (async () => {
     try {
         const connection = await pool.getConnection();
-        console.log('✅ ¡Conexión exitosa a la base de datos MySQL "michiato"!');
+        console.log('¡Conexión exitosa a la base de datos michiato!');
         connection.release();
     } catch (error) {
-        console.error('❌ Error crítico al conectar a MySQL. Revisa que tu servidor local esté encendido.');
+        console.error(' Error al conectar a MySQL.');
         console.error('Detalle del error:', error.message);
     }
 })();

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './componentes/NavBar/NavBar.jsx';
 import Home from './paginas/Home/Home.jsx';
 import Footer from './componentes/Footer/Footer.jsx';
@@ -10,35 +10,62 @@ import LogIn from './paginas/LogIn/LogIn.jsx';
 import SingIn from './paginas/SingIn/SingIn.jsx';
 import User from './paginas/User/User.jsx';
 import MenuPets from './paginas/MenuPets/MenuPets.jsx';
+import { ProtectedRoute } from './componentes/ProtectedRoute.jsx'; // <-- IMPORTANTE
 import { AuthProvider } from './context/authContext.jsx';
 import { CartProvider } from './context/cartContext.jsx';
 import './App.css';
-
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Router>
-        <AuthProvider>
-          <CartProvider>
-            <NavBar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path='/menu' element={<Menu />} />
-              <Route path='/about-us' element={<AboutUs />} />
-              <Route path='/hostesSecretKey=1234567899876543210' element={<Hostes />} />
-              <Route path='/pedidosSecretKey=9876543211234567890' element={<Pedidos />} />
-              <Route path='/signup' element={<SingIn />} />
-              <Route path='/login' element={<LogIn />} />
-              <Route path='/user' element={<User />} />
-              <Route path='/menu-pets' element={<MenuPets />} />
-            </Routes>
-          <Footer />
-        </CartProvider>
-        </AuthProvider>
+          <AuthProvider>
+            <CartProvider>
+              <NavBar />
+              <Routes>
+                {/* Rutas Públicas */}
+                <Route path="/" element={<Home />} />
+                <Route path='/menu' element={<Menu />} />
+                <Route path='/about-us' element={<AboutUs />} />
+                <Route path='/signup' element={<SingIn />} />
+                <Route path='/login' element={<LogIn />} />
+                <Route path='/menu-pets' element={<MenuPets />} />
+
+                {/* Ruta de Usuario Normal */}
+                <Route 
+                  path='/user' 
+                  element={
+                    <ProtectedRoute>
+                      <User />
+                    </ProtectedRoute>
+                  } 
+                />
+
+                {/* Ruta exclusiva para Hostess */}
+                <Route 
+                  path='/hostes' 
+                  element={
+                    <ProtectedRoute allowedRoles={['host']}>
+                      <Hostes />
+                    </ProtectedRoute>
+                  } 
+                />
+
+                {/* Ruta exclusiva para Admin  */}
+                <Route 
+                  path='/pedidos' 
+                  element={
+                    <ProtectedRoute allowedRoles={['admin']}>
+                      <Pedidos />
+                    </ProtectedRoute>
+                  } 
+                />
+              </Routes>
+              <Footer />
+            </CartProvider>
+          </AuthProvider>
         </Router>
-        
       </header>
     </div>
   );

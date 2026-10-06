@@ -12,11 +12,11 @@ app.use(express.json());
 const PORT = process.env.PORT || 5000;
 const mesasPath = path.resolve('./mesas.json');
 
-// Unificamos las rutas del archivo modular de pedidos
+
 app.use('/api', pedidosRouter);
 app.use('/api', authRoutes);
 
-// Endpoint de la Hostess para cambiar estados (con el truco del ID 0 para cargar el mapa)
+
 app.post('/cambiarEstadoMesa', (req, res) => {
     const { idMesa } = req.body;
     try {
@@ -43,4 +43,4 @@ app.post('/cambiarEstadoMesa', (req, res) => {
     }
 });
 
-app.listen(PORT, () => console.log(`🚀 Servidor en http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(` Servidor en puerto ${PORT}`));

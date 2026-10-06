@@ -4,9 +4,9 @@ import db from '../db.js';
 
 const router = express.Router();
 
-// ══════════════════════════════════════════════════
-// POST /api/register
-// ══════════════════════════════════════════════════
+
+// POST /api/register - registrare
+
 router.post('/register', async (req, res) => {
     const { nombre, email, password } = req.body;
 
@@ -30,9 +30,9 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// ══════════════════════════════════════════════════
-// POST /api/login
-// ══════════════════════════════════════════════════
+
+// POST /api/login  -iniciar secion
+
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) return res.status(400).json({ success: false, mensaje: 'Correo y contraseña son requeridos.' });
@@ -67,9 +67,9 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// ══════════════════════════════════════════════════
+
 // PUT /api/user/:id — Actualizar Perfil
-// ══════════════════════════════════════════════════
+
 router.put('/user/:id', async (req, res) => {
     const { id } = req.params;
     const { nombre, email, password, avatar } = req.body;
@@ -78,7 +78,7 @@ router.put('/user/:id', async (req, res) => {
         let query = "UPDATE usuarios SET nombre = ?, email = ?, avatar = ? WHERE id_usuario = ?";
         let params = [nombre, email, avatar, id];
 
-        // Si el usuario escribió una contraseña nueva, la hasheamos y la incluimos
+        
         if (password && password.trim() !== '') {
             const hash = await bcrypt.hash(password, 10);
             query = "UPDATE usuarios SET nombre = ?, email = ?, avatar = ?, password = ? WHERE id_usuario = ?";
@@ -87,7 +87,7 @@ router.put('/user/:id', async (req, res) => {
 
         await db.query(query, params);
 
-        // Devolvemos los datos frescos para actualizar el frontend
+      
         const [updatedUser] = await db.query('SELECT id_usuario, nombre, email, rol, avatar, tiene_descuento FROM usuarios WHERE id_usuario = ?', [id]);
         
         res.json({ success: true, mensaje: 'Perfil actualizado.', usuario: updatedUser[0] });
@@ -100,13 +100,13 @@ router.put('/user/:id', async (req, res) => {
 
 
 
-// ══════════════════════════════════════════════════
-// GET /api/historial/:idUsuario — Ver historial de compras
-// ══════════════════════════════════════════════════
+
+// /api/historial/:idUsuario — Ver historial de compras
+
 router.get('/historial/:idUsuario', async (req, res) => {
     const { idUsuario } = req.params;
     try {
-        // Traemos pedidos del usuario
+        
         const [pedidos] = await db.query(
             "SELECT id_pedido, total, fecha_pedido FROM pedidos WHERE id_usuario = ? ORDER BY fecha_pedido DESC",
             [idUsuario]
@@ -114,14 +114,14 @@ router.get('/historial/:idUsuario', async (req, res) => {
 
         if (pedidos.length === 0) return res.json({ success: true, historial: [] });
 
-        // Traemos los productos de esos pedidos
+    
         const idsPedidos = pedidos.map(p => p.id_pedido);
         const [productos] = await db.query(
             "SELECT id_pedido, nombre_producto, cantidad, precio_unitario FROM pedido_productos WHERE id_pedido IN (?)",
             [idsPedidos]
         );
 
-        // Unimos todo para enviarlo ordenado
+ 
         const historial = pedidos.map(pedido => ({
             ...pedido,
             productos: productos.filter(p => p.id_pedido === pedido.id_pedido)

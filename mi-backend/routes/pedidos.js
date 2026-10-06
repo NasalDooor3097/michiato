@@ -7,9 +7,9 @@ import db from '../db.js';
 const router = express.Router();
 const mesasPath = path.resolve('./mesas.json');
 
-// ══════════════════════════════════════════════════════════
+
 // 1. VALIDAR, REGISTRAR Y LANZAR UNA NUEVA COMANDA
-// ══════════════════════════════════════════════════════════
+
 router.post('/validarCodigoMesa', async (req, res) => {
     // Recibimos la bandera 'descuentoAplicado' desde el cuerpo de la petición
     const { codigoCliente, carritoItems, totalPrecio, idUsuario, descuentoAplicado } = req.body;
@@ -68,9 +68,9 @@ router.post('/validarCodigoMesa', async (req, res) => {
     }
 });
 
-// ══════════════════════════════════════════════════════════
+
 // 2. OBTENER EL TOTAL ACUMULADO PARA EL CLIENTE (LA CUENTA UNIFICADA)
-// ══════════════════════════════════════════════════════════
+
 router.get('/consultarCuenta/:idMesa', async (req, res) => {
     const { idMesa } = req.params;
 
@@ -119,9 +119,9 @@ router.get('/consultarCuenta/:idMesa', async (req, res) => {
     }
 });
 
-// ══════════════════════════════════════════════════════════
+
 // 3. SOLICITAR COBRO
-// ══════════════════════════════════════════════════════════
+
 router.post('/solicitarCobro', async (req, res) => {
     const { idMesa, metodoPago, total } = req.body;
 
@@ -155,9 +155,9 @@ router.post('/solicitarCobro', async (req, res) => {
     }
 });
 
-// ══════════════════════════════════════════════════════════
+
 // 4. ENVIAR PEDIDOS ACTIVOS AL MONITOR GENERAL
-// ══════════════════════════════════════════════════════════
+
 router.get('/obtenerPedidosActivos', async (req, res) => {
     try {
         const [pedidos] = await db.query(
@@ -198,9 +198,9 @@ router.get('/obtenerPedidosActivos', async (req, res) => {
     }
 });
 
-// ══════════════════════════════════════════════════════════
+
 // 5. ACTUALIZAR ESTATUS DE UN PEDIDO (solo flujo de cocina)
-// ══════════════════════════════════════════════════════════
+
 router.put('/actualizarEstatusPedido', async (req, res) => {
     const { idPedido, nuevoEstatus } = req.body;
 
@@ -221,9 +221,9 @@ router.put('/actualizarEstatusPedido', async (req, res) => {
     }
 });
 
-// ══════════════════════════════════════════════════════════
+
 // 6. COMPLETAR COBRO (caja confirma que cobró)
-// ══════════════════════════════════════════════════════════
+
 router.put('/completarCobro', async (req, res) => {
     const { idSolicitud, idMesa } = req.body;
 

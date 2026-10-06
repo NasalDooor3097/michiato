@@ -1,10 +1,9 @@
-// src/context/authContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const AuthProvider = ({ children }) => {
-  // Intentamos restaurar la sesión desde localStorage al montar
   const [usuario, setUsuario] = useState(() => {
     try {
       const guardado = localStorage.getItem('michiato_usuario');
@@ -16,7 +15,6 @@ export const AuthProvider = ({ children }) => {
 
   const [cargando, setCargando] = useState(false);
 
-  // Cada vez que cambia el usuario, sincronizamos localStorage
   useEffect(() => {
     if (usuario) {
       localStorage.setItem('michiato_usuario', JSON.stringify(usuario));
@@ -25,18 +23,25 @@ export const AuthProvider = ({ children }) => {
     }
   }, [usuario]);
 
-  // Derivado: ¿hay sesión activa?
   const estaAutenticado = usuario !== null;
 
-  /**
-   * Inicia sesión llamando al backend.
-   * Guarda en estado el objeto usuario que devuelva el servidor.
-   * Lanza un error con mensaje legible si falla.
-   */
+
+  const tieneRol = (rolesPermitidos) => {
+    if (!usuario || !usuario.rol) return false;
+    if (Array.isArray(rolesPermitidos)) {
+      return rolesPermitidos.includes(usuario.rol);
+    }
+    return usuario.rol === rolesPermitidos;
+  };
+
+  const esAdmin = usuario?.rol === 'admin';
+  const esHost = usuario?.rol === 'host';
+  const esCliente = usuario?.rol === 'cliente';
+
   const iniciarSesion = async (email, password) => {
     setCargando(true);
     try {
-      const res = await fetch('http://localhost:5000/api/login', {
+      const res = await fetch(`${API_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -61,20 +66,30 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('michiato_codigo');
   };
 
-  // 🔥 NUEVA FUNCIÓN DISPONIBLE EN EL CONTEXTO:
-  // Permite actualizar los datos del usuario en vivo (como apagar el cupón o cambiar avatar)
   const setUsuarioContext = (nuevoUsuario) => {
     setUsuario(nuevoUsuario);
   };
 
   return (
-    <AuthContext.Provider value={{ usuario, estaAutenticado, cargando, iniciarSesion, cerrarSesion, setUsuarioContext }}>
+    <AuthContext.Provider
+      value={{
+        usuario,
+        estaAutenticado,
+        cargando,
+        tieneRol,
+        esAdmin,
+        esHost,
+        esCliente,
+        iniciarSesion,
+        cerrarSesion,
+        setUsuarioContext,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Hook de acceso rápido
 export const useAuth = () => {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error('useAuth debe usarse dentro de <AuthProvider>');
